@@ -71,7 +71,7 @@ public class Images2PDF {
 	 */
 	public String getOutputFileName(String folderName, int currentPage){
 		File MangaFile = new File(folderName).getParentFile();
-		String new_file_name = new File(MangaFile, MangaFile.getName() + "_" + new File(folderName).getName() + "_" + Integer.valueOf(currentPage/max_pages + 1).toString() + ".pdf").getAbsolutePath();
+		String new_file_name = new File(MangaFile, MangaFile.getName() + "_" + new File(folderName).getName() + (max_pages > 0 ? ("_" + Integer.valueOf(currentPage/max_pages + 1).toString()) : "") + ".pdf").getAbsolutePath();
 		System.out.print("Creating " + new_file_name + "...");
 		return new_file_name;
 	}
