@@ -6,7 +6,7 @@ This project exists to create cbz files from list of jpg
 ## How to use ?
 ###For Windows users
 download bin/CBZMaker.exe and run following command:
-CBZMaker path/to/ComicBookName/
+CBZMaker path/to/ComicBookName/ [-MaxPages 100]
 
 Required structure of file is 
  - ComicBookName
