@@ -1,9 +1,9 @@
 # CBZMaker
 
-##What is it for ?
+## What is it for ?
 This project exists to create cbz files from list of jpg
 
-##How to use ?
+## How to use ?
 ###For Windows users
 download bin/CBZMaker.exe and run following command:
 CBZMaker path/to/ComicBookName/
@@ -15,5 +15,5 @@ Required structure of file is
      -file02.jpg
      -...
      
-###For other users
+### For other users
 you will find binary jar inside bin folder. Please use same arguments as above
