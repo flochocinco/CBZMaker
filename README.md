@@ -1,12 +1,16 @@
 # CBZMaker
 
 ## What is it for ?
-This project exists to create cbz files from list of jpg
+This project exists to create cbz or pdf files from list of jpg
 
 ## How to use ?
 ### For Windows users
 Download bin/CBZMaker.exe and run following command:</br>
-CBZMaker path/to/ComicBookName/ [-MaxPages 100]
+CBZMaker path/to/ComicBookName/ </br>
+</br>
+Optional Arguments:</br>
+ - -pdf : generate .pdf instead of .cbz </br>
+ - -MaxPages XXX : limit file to XXX pages </br>
 
 Required structure of file is 
  - ComicBookName
