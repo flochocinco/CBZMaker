@@ -3,7 +3,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -17,6 +16,8 @@ public class CBZMaker {
 		List<String> help = Arrays.asList("h", "-h", "--help", "?", "/h", "/help");
         int maxNumberOfPages = 0;
 		
+        boolean exportAsPDF = false;
+        
         if(args.length == 0 ){
 			displayHelp();
 			return;
@@ -26,6 +27,9 @@ public class CBZMaker {
 			if(help.contains(args[i])){
 				displayHelp();
 				return;
+			}
+			if("-pdf".equalsIgnoreCase(args[i])){
+				exportAsPDF = true;
 			}
 			if(MAX_PAGES_ARG.equalsIgnoreCase(args[i])){
 				if(i == args.length-1){
@@ -53,30 +57,25 @@ public class CBZMaker {
 			if(!folder.isDirectory()){
 				continue;
 			}
+			
+			if(exportAsPDF){
+				new Images2PDF(maxNumberOfPages).generatePDFFromImage(folder.getAbsolutePath());
+				continue;
+			}
+			
 			// zip all jpg files
-			File cbz = new File(currentLocation, mangaName + "_" + folder.getName() +(maxNumberOfPages > 0 ? "_1" : "") + ".cbz");
+			File cbz = new File(currentLocation, mangaName + "_" + folder.getName() +(maxNumberOfPages > 0 ? "_1" : "") + (exportAsPDF ? ".pdf" : ".cbz"));
 			System.out.print("Creating " + cbz.getAbsolutePath() + "...");
+
 			try {
 				ZipOutputStream out = new ZipOutputStream(new FileOutputStream(cbz));
 
 				List<File> pages = Arrays.asList(folder.listFiles());
-				pages.sort(new Comparator<File>() {
-
-					@Override
-					public int compare(File o1, File o2) {
-						if(o1 == null){
-							return o2 == null ? 0 : 1;
-						}
-						if(o2 == null){
-							return -1;
-						}
-						return o1.getName().compareTo(o2.getName());
-					}
-				});
+				pages.sort(Util.getFileComparator());
 				
 				int currentPage = 0;
 				for(File page : pages){
-					if(maxNumberOfPages > 0 && currentPage++%maxNumberOfPages == 0){
+					if(maxNumberOfPages > 0 && ++currentPage%maxNumberOfPages == 0){
 						out.close();
 						System.out.println("Done!");
 						System.out.print("Creating " + cbz.getAbsolutePath() + "...");
