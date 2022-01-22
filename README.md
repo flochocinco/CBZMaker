@@ -11,6 +11,8 @@ CBZMaker path/to/ComicBookName/ </br>
 Optional Arguments:</br>
  - -pdf : generate .pdf instead of .cbz </br>
  - -MaxPages XXX : limit file to XXX pages </br>
+ - -GroupVolumes XX : group volumes in one output file
+ - -GrayScale : convert input colored jpg into gray scale image. Very usefull for e-reader (approx 25% bigless)
 
 Required structure of file is 
  - ComicBookName
