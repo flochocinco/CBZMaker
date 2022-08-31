@@ -145,6 +145,7 @@ public class CBZMaker {
 				
 				if(groupVolumes == 1 || groupVolumes > 1 && volumeCount%groupVolumes == 0){
 					out.close();
+					cbz = null;
 					System.out.println("Done!");
 				}
 				
