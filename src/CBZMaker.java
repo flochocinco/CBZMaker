@@ -106,7 +106,7 @@ public class CBZMaker {
 				// zip all jpg files
 				if(cbz == null || volumeCount%groupVolumes == 1){
 					cbz = createFile(maxNumberOfPages, groupVolumes, currentLocation, mangaName, volumeCount, folder);
-					System.out.print("Creating " + cbz.getAbsolutePath() + "...");
+					System.out.println("Creating " + cbz.getAbsolutePath() + "...");
 					out = new ZipOutputStream(new FileOutputStream(cbz));
 				}
 
@@ -118,7 +118,8 @@ public class CBZMaker {
 					if(!page.getName().endsWith(".jpg") && !page.getName().endsWith(".jpeg")){
 						continue;
 					}
-					if(maxNumberOfPages > 0 && ++currentPage%maxNumberOfPages == 0){
+					currentPage += 1;
+					if(maxNumberOfPages > 0 && currentPage%maxNumberOfPages == 0){
 						out.close();
 						System.out.println("Done!");
 						System.out.print("Creating " + cbz.getAbsolutePath() + "...");
@@ -141,6 +142,8 @@ public class CBZMaker {
 		            
 		            fis.close();
 					out.closeEntry();
+					
+					System.out.println(cbz.getName() + ": " + currentPage + "/" + pages.size());
 				}
 				
 				if(groupVolumes == 1 || groupVolumes > 1 && volumeCount%groupVolumes == 0){
