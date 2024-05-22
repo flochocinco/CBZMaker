@@ -160,7 +160,7 @@ public class CBZMaker {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("Finished! Thank you for using this tool");
+		System.out.println("Finished! Thank you for using " + CBZMaker.class.getSimpleName());
 	}
 
 	private static File createFile(int maxNumberOfPages, int groupVolumes, String currentLocation, String mangaName,
