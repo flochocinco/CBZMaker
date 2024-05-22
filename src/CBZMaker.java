@@ -143,7 +143,7 @@ public class CBZMaker {
 		            fis.close();
 					out.closeEntry();
 					
-					System.out.println(cbz.getName() + ": " + currentPage + "/" + pages.size());
+					System.out.println(cbz.getName() + ": Volume \"" + page.getParentFile().getName() + "\" Page: " + currentPage + "/" + pages.size());
 				}
 				
 				if(groupVolumes == 1 || groupVolumes > 1 && volumeCount%groupVolumes == 0){
@@ -166,12 +166,14 @@ public class CBZMaker {
 	private static File createFile(int maxNumberOfPages, int groupVolumes, String currentLocation, String mangaName,
 			int volumeCount, File folder) {
 		File cbz;
-		String cbzName = mangaName;
+		String cbzName = mangaName + " ";
 		if(groupVolumes > 1){
 			String volumes = String.valueOf(volumeCount);
-			for(int i=volumeCount; i%groupVolumes != 0; i++){
-				volumes += "_" + (i+1);
+			int i = volumeCount;
+			while(i%groupVolumes != 0){
+				i++;
 			}
+			volumes += " to " +  (i);
 			cbzName += volumes +(maxNumberOfPages > 0 ? "_Part1" : "") + ".cbz";
 		}else{
 			cbzName += "_" + folder.getName() +(maxNumberOfPages > 0 ? "_Part1" : "") + ".cbz";
