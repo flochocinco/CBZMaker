@@ -5,8 +5,8 @@ This project exists to create cbz or pdf files from list of jpg
 
 ## How to use ?
 ### For Windows users
-Download bin/CBZMaker.exe and run following command:</br>
-CBZMaker path/to/ComicBookName/ </br>
+Download out/artifacts/CBZMaker/CBZMaker.jar and run following command:</br>
+`java -jar CBZMaker.jar path/to/ComicBookName/ [optional arguments]` </br>
 </br>
 Optional Arguments:</br>
  - -pdf : generate .pdf instead of .cbz </br>
